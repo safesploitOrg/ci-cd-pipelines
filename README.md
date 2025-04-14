@@ -18,13 +18,13 @@ This repository provides a centralised location for:
 ## 📁 Structure
 
 ``` 
-├── github-actions/ # Workflows for GitHub Actions 
-├── gitlab-ci/ # GitLab CI/CD templates 
-├── jenkins/ # Jenkinsfiles and pipeline libraries 
-├── ansible/ # Playbooks and automation scripts 
-├── terraform/ # Terraform modules for IaC 
-├── docker/ # Dockerfiles and container workflows 
-├── k8s/ # Kubernetes
-└── templates/ # Shared YAML/Jenkins templates or common steps
+├── github-actions/     # Workflows for GitHub Actions 
+├── gitlab-ci/          # GitLab CI/CD templates 
+├── jenkins/            # Jenkinsfiles and pipeline libraries 
+├── ansible/            # Playbooks and automation scripts 
+├── terraform/          # Terraform modules for IaC 
+├── docker/             # Dockerfiles and container workflows 
+├── k8s/                # Kubernetes
+└── templates/          # Shared YAML/Jenkins templates or common steps
 
 ---
