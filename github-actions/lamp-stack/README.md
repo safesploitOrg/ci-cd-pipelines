@@ -1,4 +1,4 @@
-# ⚙️ GitHub Actions: LAMP Stack Setup
+# GitHub Actions: LAMP Stack Setup
 
 This GitHub Actions workflow installs and configures a complete **LAMP stack** (Linux, Apache, MySQL, PHP) on an Ubuntu runner.
 
@@ -6,13 +6,13 @@ It is designed for **CI/CD pipelines**, automated testing, and application boots
 
 ---
 
-## 📁 Workflow Location
+## Workflow Location
 
 `.github/workflows/lamp-setup.yml`
 
 ---
 
-## 🔧 What It Does
+## What It Does
 
 - Installs Apache, PHP, and MySQL (or MariaDB)
 - Configures root MySQL password
@@ -22,7 +22,7 @@ It is designed for **CI/CD pipelines**, automated testing, and application boots
 
 ---
 
-## 🛠 Requirements
+## Requirements
 
 ### 🔐 GitHub Secrets (under **Settings > Secrets and variables > Actions > Secrets**)
 | Secret Name           | Description                      |
@@ -36,7 +36,7 @@ It is designed for **CI/CD pipelines**, automated testing, and application boots
 | `MYSQL_USER`     | Username to create      |
 | `MYSQL_DATABASE` | Database to create/use  |
 
-### 📦 SQL File
+### SQL File
 
 Place your SQL schema in the repo root:
 
@@ -57,7 +57,7 @@ sed -i "s/DATABASE_NAME_HERE/${MYSQL_DATABASE}/g" ./db/testdb.sql
 
 ---
 
-## 📋 Output Summary
+## Output Summary
 
 The workflow provides debugging:
 - Logs of installed versions (Apache, PHP, MySQL)
@@ -66,7 +66,7 @@ The workflow provides debugging:
 
 ---
 
-## 🧪 Example Use Case
+## Example Use Case
 
 Ideal for:
 - Testing LAMP-based apps like WordPress, Doogle, or custom PHP projects
@@ -75,13 +75,13 @@ Ideal for:
 
 ---
 
-## 🧹 Notes
+## Notes
 
 - This workflow uses `skip-grant-tables` temporarily to speed up configuration — not suitable for production use.
 - Replace or harden MySQL auth steps for staging/prod environments.
 
 ---
 
-## 📄 License
+## License
 
 MIT License © safesploitOrg
