@@ -17,21 +17,12 @@ jobs:
     env:
       MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
       MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-    #   Use GitHub variables
       MYSQL_USER: ${{ vars.MYSQL_USER }}
       MYSQL_DATABASE: ${{ vars.MYSQL_DATABASE }}
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-
-      - name: DEBUGGING env vars (temporary)
-        run: |
-          echo "MYSQL_ROOT_PASSWORD = $MYSQL_ROOT_PASSWORD"
-          echo "MYSQL_USER = $MYSQL_USER"
-          echo "MYSQL_PASSWORD = $MYSQL_PASSWORD"
-          echo "MYSQL_DATABASE = $MYSQL_DATABASE"
-        shell: bash
 
       - name: Install Apache
         run: |
@@ -84,6 +75,17 @@ jobs:
           mysql -uroot -p"${MYSQL_ROOT_PASSWORD}" < ./db/testdb.temp.sql
         shell: bash
 
+      - name: Grant ${MYSQL_USER} DB Permissions
+        run: |
+          sudo mysql -uroot -p"${MYSQL_ROOT_PASSWORD}" -e "
+            GRANT SELECT, INSERT, UPDATE ON ${MYSQL_DATABASE}.* TO '${MYSQL_USER}'@'%';
+            FLUSH PRIVILEGES;"
+        shell: bash
+
+      
+      # ###########
+      # DEBUGGING #
+      # ###########
       - name: DEBUGGING MySQL Verify Database
         run: |
           mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "SHOW DATABASES;"
@@ -108,3 +110,11 @@ jobs:
       - name:  DEBUGGING Verify PHP Page is Accessible
         run: |
           curl http://localhost/info.php
+
+      - name: DEBUGGING env vars (temporary)
+        run: |
+          echo "MYSQL_ROOT_PASSWORD = $MYSQL_ROOT_PASSWORD"
+          echo "MYSQL_USER = $MYSQL_USER"
+          echo "MYSQL_PASSWORD = $MYSQL_PASSWORD"
+          echo "MYSQL_DATABASE = $MYSQL_DATABASE"
+        shell: bash
